@@ -34,7 +34,7 @@ public class BaseFrontEndTest {
     }
 
     @BeforeMethod(alwaysRun = true)
-    public void setup() {
+    public void setup() throws IOException {
         setupDriver(browserName);
     }
 
@@ -51,7 +51,7 @@ public class BaseFrontEndTest {
         }
     }
 
-    private void setupDriver(String browserType) {
+    private void setupDriver(String browserType) throws IOException {
         BrowserType browser = BrowserType.valueOf(browserType);
         switch (browser) {
             case CHROME:
@@ -75,7 +75,8 @@ public class BaseFrontEndTest {
         }
         driver.manage().deleteAllCookies();
         driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(5));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Integer.parseInt(ConfigReaderUtils.getConfigValue("IMPLICIT_TIMEOUT"))));
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(Integer.parseInt(ConfigReaderUtils.getConfigValue("PAGE_LOAD_TIMEOUT"))));
         driver.get(baseURL);
     }
 
