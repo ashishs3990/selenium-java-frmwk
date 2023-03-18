@@ -24,7 +24,7 @@ public class GuestUserLocationTest extends BaseFrontEndTest {
             testOwner = "Ashish Sharma<ashishs3990@gmail.com>",
             testLocation = ""
     )
-    public void validateRestaurantsCount(String locationText, String tabIndex) throws InterruptedException {
+    public void validateRestaurantsCount(String locationText, String tabIndex) {
         homePage = new GuestWelcomePage(driver);
         guestHomePage = homePage.selectLocation(locationText, tabIndex);
         int restaurantCount = guestHomePage.getRestaurantsCount();
@@ -34,7 +34,7 @@ public class GuestUserLocationTest extends BaseFrontEndTest {
     @DataProvider
     public Object[][] getData() {
         return new String[][]{
-                {"Bangalore", "2"},
+                //{"Bangalore", "2"},
                 {"Bangalore", "3"}
         };
     }

@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class GuestWelcomePage extends BaseWebPage {
+public class GuestWelcomePage extends BaseWebPage<GuestWelcomePage> {
     @FindBy(id = "location")
     private WebElement deliveryLocationEditField;
 
