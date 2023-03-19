@@ -12,7 +12,7 @@ import org.testng.annotations.Parameters;
 import java.io.IOException;
 
 public class BaseFrontEndTest extends BaseTest {
-
+    private final ThreadLocal<WebDriver> threadLocal = new InheritableThreadLocal<>();
     public String baseURL;
     public String browserName;
     protected WebDriver driver;
@@ -28,6 +28,7 @@ public class BaseFrontEndTest extends BaseTest {
     @BeforeMethod(alwaysRun = true)
     public void setup() throws IOException {
         driver = WebDriverFactory.getWebDriver(browserName);
+        threadLocal.set(driver);
         driver.get(baseURL);
     }
 
@@ -41,6 +42,11 @@ public class BaseFrontEndTest extends BaseTest {
 
     @AfterMethod
     public void tearDown() {
-        driver.quit();
+        getDriver().quit();
+        threadLocal.remove();
+    }
+
+    protected WebDriver getDriver() {
+        return threadLocal.get();
     }
 }

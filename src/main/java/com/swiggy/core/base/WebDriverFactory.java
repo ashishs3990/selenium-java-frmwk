@@ -6,11 +6,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.safari.SafariDriver;
 
 import java.io.IOException;
 import java.time.Duration;
@@ -25,22 +21,19 @@ public class WebDriverFactory {
         WebDriver driver;
         switch (browser) {
             case CHROME -> {
-                WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--remote-allow-origins=*");
-                driver = new ChromeDriver(options);
+                //options.addArguments("headless"); //For headless execution
+                driver = WebDriverManager.chromedriver().capabilities(options).create();
             }
             case FIREFOX -> {
-                WebDriverManager.firefoxdriver().setup();
-                driver = new FirefoxDriver();
+                driver = WebDriverManager.firefoxdriver().create();
             }
             case EDGE -> {
-                WebDriverManager.edgedriver().setup();
-                driver = new EdgeDriver();
+                driver = WebDriverManager.edgedriver().create();
             }
             case SAFARI -> {
-                WebDriverManager.safaridriver().setup();
-                driver = new SafariDriver();
+                driver = WebDriverManager.safaridriver().create();
             }
             default -> {
                 throw new UnsupportedOperationException("Browser " + browser + " not supported!");

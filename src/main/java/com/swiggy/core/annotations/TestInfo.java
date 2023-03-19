@@ -2,6 +2,7 @@ package com.swiggy.core.annotations;
 
 
 import com.swiggy.core.model.TestPriority;
+import com.swiggy.core.model.TestSeverity;
 import com.swiggy.core.model.TestcaseInventory;
 
 import java.lang.annotation.ElementType;
@@ -57,6 +58,8 @@ public @interface TestInfo {
     String testOwner();
 
     TestPriority priority();
+
+    TestSeverity severity();
 
     /**
      * Test Suite Id in Test Rail, optional parameter
