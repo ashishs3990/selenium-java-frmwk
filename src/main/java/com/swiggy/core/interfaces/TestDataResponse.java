@@ -1,4 +1,4 @@
 package com.swiggy.core.interfaces;
 
-public class TestDataResponse {
+public interface TestDataResponse {
 }

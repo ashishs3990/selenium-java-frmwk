@@ -12,8 +12,8 @@ import java.io.IOException;
  */
 @Slf4j
 public class RetryAnalyzerListener implements IRetryAnalyzer {
-    private int retryCounter = 1;
     private final int maxRetryCount;
+    private int retryCounter = 1;
 
     public RetryAnalyzerListener() throws IOException {
         maxRetryCount = Integer.parseInt(ConfigReaderUtils.getConfigValue("RETRY_COUNT"));
