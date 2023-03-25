@@ -14,20 +14,22 @@ import java.io.IOException;
 public class BaseFrontEndTest extends BaseTest {
     private final ThreadLocal<WebDriver> threadLocal = new InheritableThreadLocal<>();
     public String baseURL;
+    public String platformName;
     public String browserName;
     protected WebDriver driver;
 
     @BeforeSuite
-    @Parameters({"test.env", "browser.name"})
-    public void initSuite(String env, String browserType, ITestContext context) throws IOException {
-        baseURL = getBaseURL(env);
-        browserName = browserType;
+    @Parameters({"test.env", "platform.name", "browser.name"})
+    public void initSuite(String env, String platformName, String browserType, ITestContext context) throws IOException {
+        this.baseURL = getBaseURL(env);
+        this.platformName = platformName;
+        this.browserName = browserType;
         System.out.println("Execution Environment: " + env + " BrowserName: " + browserType + " BaseURL: " + baseURL);
     }
 
     @BeforeMethod(alwaysRun = true)
     public void setup() throws IOException {
-        driver = WebDriverFactory.getWebDriver(browserName);
+        driver = DriverFactory.getBaseDriver(platformName, browserName).getWebDriver();
         threadLocal.set(driver);
         driver.get(baseURL);
     }
