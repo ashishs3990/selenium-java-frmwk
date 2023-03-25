@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class GuestHomePage extends BaseWebPage {
+public class GuestHomePage extends BaseWebPage<GuestHomePage> {
 
     @FindBy(xpath = "//div[@id='all_restaurants']//descendant::div[contains(text(),'restaurants')]")
     WebElement restaurantCount;

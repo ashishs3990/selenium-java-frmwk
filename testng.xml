@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suite" verbose="4" parallel="tests" thread-count="3">
+<suite name="Swiggy Test Suite - Smoke" verbose="4" parallel="tests" thread-count="3">
     <listeners>
         <listener class-name="com.swiggy.core.listeners.TestListener"/>
         <listener class-name="com.swiggy.core.listeners.ReporterListener"/>
         <!--<listener class-name="com.swiggy.core.listeners.RetryAnalyzerListener"/>-->
     </listeners>
     <parameter name="test.env" value="PROD"/>
-    <parameter name="localExecution" value="true"/>
-    <parameter name="remoteHubURL" value="NA"/>
-    <parameter name="browser.name" value="CHROME"/>
-    <parameter name="addCookies" value="false"/>
+    <parameter name="execution.local" value="true"/>
+    <parameter name="remote.hub.url" value="NA"/>
+
+    <parameter name="platform.name" value="Windows"/>
+    <parameter name="browser.name" value="EDGE"/>
+
+    <parameter name="browser.headless" value="false"/>
+    <parameter name="add.cookies" value="false"/>
     <parameter name="cookies" value="NA"/>
-    <parameter name="publishReport" value="false"/>
+    <parameter name="publish.report" value="false"/>
     <test name="Swiggy Guest User - Tests" parallel="methods" thread-count="3">
         <classes>
             <class name="com.swiggy.GuestUserLocationTest">
